@@ -28,16 +28,15 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((requests) -> requests
-				//.requestMatchers("/", "/home", "/users", "/users/1/expenses").permitAll()
-				//.anyRequest().authenticated()
-				.anyRequest().permitAll()
+				.requestMatchers("/", "/home").permitAll()
+				.anyRequest().authenticated()
+				//.anyRequest().permitAll()
 			)
 			.formLogin((form) -> form
 				.loginPage("/login")
 				.permitAll()
 			)
-			.logout((logout) -> logout.permitAll())
-			.csrf().disable();
+			.logout((logout) -> logout.permitAll());
 
 		return http.build();
 	}

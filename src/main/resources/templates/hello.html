@@ -1,13 +1,56 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <head>
-        <title>Hello World!</title>
-    </head>
-    <body>
-        <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-    </body>
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <title>Hello World!</title>
+</head>
+
+<body>
+    <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+
+    <h2>User List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <!-- Add more headers if needed -->
+            </tr>
+        </thead>
+        <tbody id="users-table-body">
+            <!-- Users will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        fetch('/users')
+            .then(response => response.json())
+            .then(users => {
+                const tableBody = document.getElementById('users-table-body');
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+
+                    const usernameCell = document.createElement('td');
+                    const link = document.createElement('a');
+                    link.href = "/users/" + user.id + "/expenses";
+                    link.innerText = user.username;
+                    usernameCell.innerText = user.id;
+                    row.appendChild(usernameCell);
+                    row.appendChild(link);
+
+                    // Add more cells if needed
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching users:', error);
+            });
+    </script>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out" />
+    </form>
+</body>
+
 </html>

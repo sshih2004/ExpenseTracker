@@ -1,6 +1,7 @@
 package com.sshih.ExpenseTrackerAPI.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import com.sshih.ExpenseTrackerAPI.Expense.Expense;
@@ -25,14 +26,15 @@ public class UserController {
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
+    
 
-    @GetMapping("")
-    public List<User> findAllUsers() {
+    @GetMapping()
+    public List<User> getMethodName() {
         return userService.findAll();
     }
     
-
     // Add an expense to a user
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{userId}/expenses")
     public Expense addExpenseToUser(@PathVariable Long userId, @RequestBody Expense expense) {
         log.info(expense.getDescription());
