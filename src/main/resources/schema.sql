@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS expenses (
     id SERIAL PRIMARY KEY,
     description VARCHAR(255),
+    category VARCHAR(255),
     amount NUMERIC(10, 2),
     time timestamp NOT NULL,
     user_id BIGINT NOT NULL,

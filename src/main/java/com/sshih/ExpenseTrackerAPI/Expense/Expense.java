@@ -1,5 +1,7 @@
 package com.sshih.ExpenseTrackerAPI.Expense;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sshih.ExpenseTrackerAPI.User.User;
 import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
@@ -24,6 +26,11 @@ public class Expense {
     private String category;
     private String description;
     private LocalDateTime time;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Expense() {
         time = LocalDateTime.now();

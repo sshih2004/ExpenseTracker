@@ -29,7 +29,7 @@ public class UserController {
     
 
     @GetMapping()
-    public List<User> getMethodName() {
+    public List<User> getAllUsers() {
         return userService.findAll();
     }
     

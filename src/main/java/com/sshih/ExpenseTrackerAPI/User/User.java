@@ -3,6 +3,7 @@ package com.sshih.ExpenseTrackerAPI.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sshih.ExpenseTrackerAPI.Expense.Expense;
 
 import jakarta.persistence.CascadeType;
@@ -26,9 +27,10 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
     private String username;
     private String password;
-    private Boolean enabled;
+    private Boolean enabled = true;
 
-    @OneToMany
+    @OneToMany(mappedBy =  "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Expense> expenses;
 
     User(String username, String password) {

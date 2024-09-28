@@ -28,6 +28,7 @@ public class UserService {
     public Expense addExpenseToUser(Long userId, Expense expense) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+        expense.setUser(user);
         expenseRepository.save(expense);
         user.addExpense(expense);
         userRepository.save(user); // Due to CascadeType.ALL, expense will be saved
