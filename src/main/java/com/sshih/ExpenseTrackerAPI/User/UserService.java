@@ -1,5 +1,6 @@
 package com.sshih.ExpenseTrackerAPI.User;
 
+import org.hibernate.annotations.DialectOverride.OverridesAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,11 @@ public class UserService {
             return userRepository.findById(userId).get().getExpenses();
         }
         throw new RuntimeException("can't find user");
+    }
+
+    public User findById(Long id) {
+        return userRepository.findById(id)
+        .orElse(null);
     }
 
     // Other methods (updateUser, deleteUser, etc.)

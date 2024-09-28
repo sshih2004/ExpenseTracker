@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <p><strong>ID:</strong> <span th:text="${user.id}">[User ID]</span></p>
+    <p><strong>Username:</strong> <span th:text="${user.username}">[Username]</span></p>
+    <p><strong>Expenses:</strong> <span th:text="${user.expenses}">[Expenses]</span></p>
+    <!-- Add more fields as needed -->
+</body>
+</html>

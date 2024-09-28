@@ -2,6 +2,8 @@ package com.sshih.ExpenseTrackerAPI.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.sshih.ExpenseTrackerAPI.Expense.Expense;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Log
-@RestController
+@Controller
 @RequestMapping("/users")
 public class UserController {
 
@@ -29,6 +31,7 @@ public class UserController {
     
 
     @GetMapping()
+    @ResponseBody
     public List<User> getAllUsers() {
         return userService.findAll();
     }
@@ -43,8 +46,13 @@ public class UserController {
 
     // Get all expenses for a user
     @GetMapping("/{userId}/expenses")
-    public List<Expense> getUserExpenses(@PathVariable Long userId) {
-        return userService.getUserExpenses(userId);
+    public String getUserExpenses(@PathVariable Long userId, Model model) {
+        User user = userService.findById(userId);
+        if (user == null) {
+            return "user_not_found";
+        }
+        model.addAttribute("user", user);
+        return "user_profile";
     }
 
     // Other endpoints (getUserById, updateUser, deleteUser, etc.)
