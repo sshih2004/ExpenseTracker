@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create New Expense</title>
+</head>
+<body>
+    <h1>Create a New Expense</h1>
+    <form th:action="@{${formActionUrl}}" method="post" th:object="${expense}">
+        <label for="amount">Amount:</label>
+        <input type="text" id="name" th:field="*{amount}" required /><br/><br/>
+
+        <label for="description">Description:</label>
+        <textarea id="description" th:field="*{description}" required></textarea><br/><br/>
+
+        <label for="category">Category:</label>
+        <input type="text" id="category" th:field="*{category}" required /><br/><br/>
+
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>

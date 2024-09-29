@@ -35,9 +35,10 @@ public class Expense {
     private User user;
 
     public Expense() {
-        time = LocalDateTime.now();
+        this.time = LocalDateTime.now();
     }
     public Expense(Double amount, String category, String description) {
+        this();
         this.amount = amount;
         this.category = category;
         this.description = description;

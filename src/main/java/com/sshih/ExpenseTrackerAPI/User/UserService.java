@@ -8,6 +8,10 @@ import com.sshih.ExpenseTrackerAPI.Expense.Expense;
 import com.sshih.ExpenseTrackerAPI.Expense.ExpenseRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+import javax.management.RuntimeErrorException;
 
 @Service
 public class UserService {
@@ -35,6 +39,15 @@ public class UserService {
         userRepository.save(user); // Due to CascadeType.ALL, expense will be saved
 
         return expense;
+    }
+
+    public User deleteExpenseFromUser(Long userId, Long expenseId) {
+        Optional<Expense> toDelete = expenseRepository.findById(expenseId);
+        if (toDelete.isPresent()) {
+            expenseRepository.delete(expenseRepository.findById(expenseId).get());
+            return findById(userId);
+        }
+        throw new NoSuchElementException("no exception of id: " + expenseId);
     }
 
     public List<Expense> getUserExpenses(Long userId) {
