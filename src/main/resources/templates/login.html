@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
-        <title>Spring Security Example </title>
+        <title>ExpenseTrackerAPI</title>
     </head>
     <body>
         <div th:if="${param.error}">
@@ -15,5 +15,7 @@
             <div><label> Password: <input type="password" name="password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
+        <br>
+        <a href="/users/new">Create an account</a>
     </body>
 </html>

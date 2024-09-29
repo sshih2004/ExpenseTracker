@@ -23,12 +23,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    // Create a new user
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
-    }
     
 
     @GetMapping()
@@ -66,10 +60,28 @@ public class UserController {
     }
 
     @GetMapping("/expenses/new")
-    public String showCreateForm(Model model) {
+    public String showCreateExpenseForm(Model model) {
         model.addAttribute("expense", new Expense());
         model.addAttribute("formActionUrl", "/users/expenses");
         return "new_expense";
+    }    
+    
+    @GetMapping("/new")
+    public String showCreateUserForm(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("formActionUrl", "/users/new");
+        return "new_user";
+    }
+
+    
+    @PostMapping("/new")
+    public String createUser(@ModelAttribute User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "new_user";
+        }
+        log.info("BYBY");
+        userService.createUser(user);
+        return "redirect:/login";
     }
 
 

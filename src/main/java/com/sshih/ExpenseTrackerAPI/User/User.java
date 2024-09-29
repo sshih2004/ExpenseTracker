@@ -44,4 +44,8 @@ public class User {
     public void removeExpense(Expense expense) {
         expenses.remove(expense);
     }
+
+    public void setPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }
 }
