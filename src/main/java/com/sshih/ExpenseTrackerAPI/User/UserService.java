@@ -62,5 +62,10 @@ public class UserService {
         .orElse(null);
     }
 
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
+        .orElse(null);    
+    }
+
     // Other methods (updateUser, deleteUser, etc.)
 }
