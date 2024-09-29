@@ -73,13 +73,12 @@ public class UserController {
         return "new_user";
     }
 
-    
+
     @PostMapping("/new")
     public String createUser(@ModelAttribute User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "new_user";
         }
-        log.info("BYBY");
         userService.createUser(user);
         return "redirect:/login";
     }
