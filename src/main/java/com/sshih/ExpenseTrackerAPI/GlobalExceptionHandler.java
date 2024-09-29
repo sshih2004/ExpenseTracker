@@ -13,7 +13,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public String handleAllError(Exception ex, HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = (Authentication) request.getUserPrincipal();
-
         if (auth != null) {
             // Perform logout
             new SecurityContextLogoutHandler().logout(request, response, auth);
