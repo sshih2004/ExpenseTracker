@@ -1,3 +1,5 @@
+<h2>ExpenseTracker</h2>
+
 A Spring Boot-based application that provides a service of managing user expenses. 
 This application incorporates Spring Boot for backend, Spring Data and PostgreSQL for a onetomany relational database, Spring Security for multiple users authorization and content security.
 
