@@ -5,8 +5,6 @@ This application incorporates Spring Boot for backend, Spring Data and PostgreSQ
 
 Here are some screenshots showing how the application works:
 
-
-Below are screenshots demonstrating the user-facing front-end of this application
 ![image](https://github.com/user-attachments/assets/8c8c255f-fa19-47c5-9faf-48841def8d53)
 
 
