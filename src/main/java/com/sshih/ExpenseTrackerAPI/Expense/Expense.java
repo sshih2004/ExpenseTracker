@@ -41,4 +41,10 @@ public class Expense {
         this.category = category;
         this.description = description;
     }
+    public Expense(Double amount, String category, String description, LocalDateTime time) {
+        this.time = time;
+        this.amount = amount;
+        this.category = category;
+        this.description = description;
+    }
 }
