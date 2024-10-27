@@ -17,7 +17,7 @@ This application incorporates Spring Boot for backend, Spring Data and PostgreSQ
 ![image](https://github.com/user-attachments/assets/14e1a733-4007-429b-b7b8-8d7e7dae5ec6)
 
 
-Here's a running example: [http://34.121.25.82:8080/](url)
+Here's a running example: [http://34.121.25.82:8080/]
 
 ## Database and Docker
 This application uses PostgreSQL containerized in a Docker for easy deployment and scalability. The Docker container stores database data in a Docker volume for data persistence. See compose.yaml in root directory for how the Docker is set. The database contains two tables, one for user and one for expenses. Users to expenses is a one to many relationship, meaning that each user holds multiple expenses and they are interconnected. The username and password, encrypted, are also stored in this database for user authentication. The database interacts with the backend of the application through Spring Data JPA.
